@@ -1,4 +1,4 @@
-package com.springboot.runner;
+package com.springboot.testrunner;
 
 import com.springboot.Application;
 import org.jsmart.zerocode.core.runner.ZeroCodePackageRunner;

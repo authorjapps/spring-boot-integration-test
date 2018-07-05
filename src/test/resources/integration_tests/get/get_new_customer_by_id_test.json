@@ -1,8 +1,8 @@
 {
-    "scenarioName": "Update an existing customer by customerId",
+    "scenarioName": "Given the customerId, fetch the customer details",
     "steps": [
         {
-            "name": "create_or_update_customer",
+            "name": "put_customer",
             "url": "/api/abc-bank/customers/AMZON-1001",
             "operation": "PUT",
             "request": {
@@ -15,28 +15,22 @@
             "assertions": {
                 "status": 200,
                 "body": {
-                    "id" : "AMZON-1001",
-                    "name" : "Elon",
-                    "age" : 25,
-                    "emailId" : "emusk@tesla.com"
+                    "id" : "AMZON-1001"
                 }
             }
         },
         {
-            "name": "update_customer",
+            "name": "fetch_customer",
             "url": "/api/abc-bank/customers/AMZON-1001",
-            "operation": "PUT",
+            "operation": "GET",
             "request": {
-                "body": {
-                    "age": 35
-                }
             },
             "assertions": {
                 "status": 200,
-                "body": {
+                "body" : {
                     "id" : "AMZON-1001",
                     "name" : "Elon",
-                    "age" : 35,
+                    "age" : 25,
                     "emailId" : "emusk@tesla.com"
                 }
             }

@@ -1,6 +1,6 @@
 package integrationtests.get;
 
-import com.springboot.runner.E2eJunitRunner;
+import com.springboot.testrunner.E2eJunitRunner;
 import org.jsmart.zerocode.core.domain.JsonTestCase;
 import org.jsmart.zerocode.core.domain.TargetEnv;
 import org.junit.Test;
@@ -11,8 +11,13 @@ import org.junit.runner.RunWith;
 public class VerifyGetContract {
 
     @Test
-    @JsonTestCase("integration_tests/get/get_customer_by_id_test.json")
-    public void test_getCustomerDetailsById() throws Exception {
+    @JsonTestCase("integration_tests/get/get_new_customer_by_id_test.json")
+    public void test_getNewCustomerDetailsById() throws Exception {
+    }
+
+    @Test
+    @JsonTestCase("integration_tests/get/get_updated_customer_by_id_test.json")
+    public void test_getUpdatedCustomerDetailsById() throws Exception {
     }
 
 }

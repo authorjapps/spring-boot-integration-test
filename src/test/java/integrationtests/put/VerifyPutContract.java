@@ -1,6 +1,6 @@
 package integrationtests.put;
 
-import com.springboot.runner.E2eJunitRunner;
+import com.springboot.testrunner.E2eJunitRunner;
 import org.jsmart.zerocode.core.domain.JsonTestCase;
 import org.jsmart.zerocode.core.domain.TargetEnv;
 import org.junit.Test;
@@ -11,8 +11,13 @@ import org.junit.runner.RunWith;
 public class VerifyPutContract {
 
     @Test
+    @JsonTestCase("integration_tests/put/create_a_customer_test.json")
+    public void test_createOrUpdateCustomer() throws Exception {
+    }
+
+    @Test
     @JsonTestCase("integration_tests/put/update_an_existing_customer_test.json")
-    public void test_updateCustomer() throws Exception {
+    public void test_updateExistingCustomer() throws Exception {
     }
 
 }

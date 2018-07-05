@@ -7,13 +7,13 @@ import java.util.concurrent.ConcurrentMap;
 
 
 /**
- * CustomerCache class is used to store instruments and prices by Vendor
+ * CustomerCache class is used to store customers by their id as key
  */
 public enum CustomerCache {
 
     INSTANCE(new ConcurrentHashMap<>());
 
-    public ConcurrentMap<String, Customer> map = new ConcurrentHashMap<>();
+    public static ConcurrentMap<String, Customer> map = new ConcurrentHashMap<>();
 
     private ConcurrentMap<String, Customer> customerCache;
 

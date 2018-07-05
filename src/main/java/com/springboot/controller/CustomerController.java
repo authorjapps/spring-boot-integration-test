@@ -19,7 +19,7 @@ public class CustomerController {
 
     @ResponseBody
     @PutMapping(value = "/api/abc-bank/customers/{customerId}")
-    public ResponseEntity postVendorFeed(@PathVariable String customerId, @RequestBody Customer customer) {
+    public ResponseEntity putCustomerById(@PathVariable String customerId, @RequestBody Customer customer) {
 
         LOGGER.info("Updating customer:{}", customerId);
 
@@ -31,7 +31,7 @@ public class CustomerController {
 
     @ResponseBody
     @GetMapping(value = "/api/abc-bank/customers/{customerId}")
-    public ResponseEntity getInstrumentsByVendor(@PathVariable("customerId") String customerId) {
+    public ResponseEntity getCustomerById(@PathVariable("customerId") String customerId) {
 
         LOGGER.info("Fetching customer:{}", customerId);
 
