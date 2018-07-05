@@ -1,0 +1,26 @@
+{
+    "scenarioName": "Update a customer by customerId",
+    "steps": [
+        {
+            "name": "post_instrument",
+            "url": "/api/abc-bank/customers/AMZON-1001",
+            "operation": "PUT",
+            "request": {
+                "body": {
+                    "name": "Elon",
+                    "age": 25,
+                    "emailId": "emusk@tesla.com"
+                }
+            },
+            "assertions": {
+                "status": 200,
+                "body": {
+                    "id" : "AMZON-1001",
+                    "name" : "Elon",
+                    "age" : 25,
+                    "emailId" : "emusk@tesla.com"
+                }
+            }
+        }
+    ]
+}

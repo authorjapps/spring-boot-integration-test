@@ -1,0 +1,39 @@
+{
+    "scenarioName": "Given the customerId, fetch the customer details",
+    "steps": [
+        {
+            "name": "post_instrument",
+            "url": "/api/abc-bank/customers/AMZON-1001",
+            "operation": "PUT",
+            "request": {
+                "body": {
+                    "name": "Elon",
+                    "age": 25,
+                    "emailId": "emusk@tesla.com"
+                }
+            },
+            "assertions": {
+                "status": 200,
+                "body": {
+                    "id" : "AMZON-1001"
+                }
+            }
+        },
+        {
+            "name": "fetch_customer",
+            "url": "/api/abc-bank/customers/AMZON-1001",
+            "operation": "GET",
+            "request": {
+            },
+            "assertions": {
+                "status": 200,
+                "body" : {
+                    "id" : "AMZON-1001",
+                    "name" : "Elon",
+                    "age" : 25,
+                    "emailId" : "emusk@tesla.com"
+                }
+            }
+        }
+    ]
+}
