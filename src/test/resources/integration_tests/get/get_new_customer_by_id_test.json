@@ -1,5 +1,5 @@
 {
-    "scenarioName": "Given the customerId, fetch the customer details",
+    "scenarioName": "Given the customerId, fetch the customer details @@Sameer",
     "steps": [
         {
             "name": "put_customer",

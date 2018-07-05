@@ -1,5 +1,5 @@
 {
-    "scenarioName": "Create or Update a customer by customerId",
+    "scenarioName": "Create or Update a customer by customerId @@John",
     "steps": [
         {
             "name": "create_or_update_customer",
