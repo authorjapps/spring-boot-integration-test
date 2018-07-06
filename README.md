@@ -1,5 +1,6 @@
 # spring-boot-integration-test
-Zerocode based integration-tests for a spring-boot application 
+Zerocode based integration-tests for a spring-boot application.
+> Keep it simple and easy while doing the integration tests
 
 ![Integration_tests_organization](img/it_tests_org_S.png)
 
@@ -45,8 +46,8 @@ e.g.
   </plugin>
 ```     
 
-+ Please observe the Suite-Test class `<include>integrationtests.IntegrationTestSuite.java</include>` which i spointing 
-to the root of the tests in the resources folder `resource/integration_tests`
++ Please look at the the Suite-Test class `<include>integrationtests.IntegrationTestSuite.java</include>` which is pointing 
+to the root of the tests in the test-resources folder `resource/integration_tests`
 
 i.e. as below-
 ```
