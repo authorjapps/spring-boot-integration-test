@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 
 @TargetEnv("abc_bankapp_host.properties")
 @RunWith(E2eJunitRunner.class)
-public class VerifyGetContract {
+public class VerifyGetFeature {
 
     @Test
     @JsonTestCase("integration_tests/get/get_new_customer_by_id_test.json")

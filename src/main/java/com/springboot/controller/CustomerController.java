@@ -1,7 +1,7 @@
 package com.springboot.controller;
 
 import com.springboot.model.Customer;
-import com.springboot.service.CustomerService;
+import com.springboot.service.BankCustomerService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class CustomerController {
     private static Logger LOGGER = LogManager.getLogger(CustomerController.class);
 
     @Autowired
-    private CustomerService customerService;
+    private BankCustomerService bankCustomerService;
 
     @ResponseBody
     @PutMapping(value = "/api/abc-bank/customers/{customerId}")
@@ -23,7 +23,7 @@ public class CustomerController {
 
         LOGGER.info("Updating customer:{}", customerId);
 
-        Customer updatedCustomer = customerService.updaeCustomer(customerId, customer);
+        Customer updatedCustomer = bankCustomerService.updaeCustomer(customerId, customer);
 
         return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
 
@@ -35,7 +35,7 @@ public class CustomerController {
 
         LOGGER.info("Fetching customer:{}", customerId);
 
-        Customer customer = customerService.findCustomer(customerId);
+        Customer customer = bankCustomerService.findCustomer(customerId);
 
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }

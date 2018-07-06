@@ -1,4 +1,4 @@
-package com.springboot.cache;
+package com.springboot.dbcache;
 
 import com.springboot.model.Customer;
 

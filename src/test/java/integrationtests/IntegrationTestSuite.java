@@ -10,7 +10,10 @@ import org.junit.runner.RunWith;
  * recursively.
  *
  * To run individual tests, go to the corresponding package and run the test as JUnit
- * e.g. go to folders >> get, put etc
+ * e.g. go to folders >> get, put etc under "src/test/java/integrationtests"
+ * and run-
+ *      - integrationtests.get.VerifyGetFeature.java
+ *      - integrationtests.put.VerifyPutFeature.java
  */
 @TargetEnv("abc_bankapp_host.properties")
 @TestPackageRoot("integration_tests")
