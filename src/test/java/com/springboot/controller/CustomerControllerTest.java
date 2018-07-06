@@ -16,13 +16,13 @@ public class CustomerControllerTest {
     @Test
     public void testGet() throws Exception {
         // Scenarios covered in the integration tests
-        // See >> integrationtests.get.VerifyGetContract.java
+        // See >> integrationtests.get.VerifyGetFeature.java
 
     }
 
     @Test
     public void testPut() {
         // Scenarios covered in the integration tests
-        // See >> integrationtests.put.VerifyPutContract.java
+        // See >> integrationtests.put.VerifyPutFeature.java
     }
 }

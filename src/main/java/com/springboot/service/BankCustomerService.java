@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerService {
-    private static Logger LOGGER = LogManager.getLogger(CustomerService.class);
+public class BankCustomerService {
+    private static Logger LOGGER = LogManager.getLogger(BankCustomerService.class);
 
     private final DbPersistenceService persistenceService;
 
     @Autowired
-    public CustomerService(DbPersistenceService persistenceService) {
+    public BankCustomerService(DbPersistenceService persistenceService) {
         this.persistenceService = persistenceService;
     }
 

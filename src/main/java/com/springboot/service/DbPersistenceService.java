@@ -1,11 +1,10 @@
 package com.springboot.service;
 
 
-import com.springboot.cache.CustomerCache;
+import com.springboot.dbcache.CustomerCache;
 import com.springboot.model.Customer;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
 
 import static java.util.Optional.ofNullable;
@@ -22,6 +21,7 @@ public class DbPersistenceService {
         Customer updatedCustomer;
 
         if (customerExisting != null) {
+
             updatedCustomer = new Customer(
                     customerId,
                     ofNullable(customerNew.getName()).orElse(customerExisting.getName()),
@@ -31,6 +31,7 @@ public class DbPersistenceService {
             customerCache.put(customerId, updatedCustomer);
 
         } else {
+
             updatedCustomer = new Customer(
                     customerId,
                     customerNew.getName(),
