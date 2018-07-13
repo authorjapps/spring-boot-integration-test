@@ -6,7 +6,7 @@ import org.jsmart.zerocode.core.domain.TargetEnv;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@TargetEnv("abc_bankapp_host.properties")
+@TargetEnv("application_host.properties")
 @RunWith(E2eJunitRunner.class)
 public class VerifyPutFeature {
 

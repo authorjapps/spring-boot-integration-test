@@ -1,0 +1,61 @@
+{
+    "scenarioName": "Given the customerId, delete the customer details @@Charaan",
+    "steps": [
+        {
+            "name": "create_customer",
+            "url": "/api/abc-bank/customers/TESLA-1001",
+            "operation": "PUT",
+            "request": {
+                "body": {
+                    "name": "Elon",
+                    "age": 25,
+                    "emailId": "emusk@tesla.com"
+                }
+            },
+            "assertions": {
+                "status": 200,
+                "body": {
+                    "id" : "TESLA-1001"
+                }
+            }
+        },
+        {
+            "name": "get_customer",
+            "url": "/api/abc-bank/customers/${$.create_customer.response.body.id}",
+            "operation": "GET",
+            "request": {
+            },
+            "assertions": {
+                "status" : 200,
+                "body" : {
+                    "id" : "TESLA-1001",
+                    "name" : "Elon",
+                    "age" : 25,
+                    "emailId" : "emusk@tesla.com"
+                }
+            }
+        },
+        {
+            "name": "delete_customer",
+            "url": "/api/abc-bank/customers/${$.create_customer.response.body.id}",
+            "operation": "DELETE",
+            "request": {
+            },
+            "assertions": {
+                "status": 204
+            }
+        },
+        {
+            "name": "get_deleted_customer",
+            "url": "/api/abc-bank/customers/${$.create_customer.response.body.id}",
+            "operation": "GET",
+            "request": {
+            },
+            "assertions": {
+                "status" : 200,
+                "body" : null
+            }
+        }
+
+    ]
+}

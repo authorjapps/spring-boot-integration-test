@@ -14,9 +14,10 @@ import org.junit.runner.RunWith;
  * and run-
  *      - integrationtests.get.VerifyGetFeature.java
  *      - integrationtests.put.VerifyPutFeature.java
+ *      - integrationtests.delete.VerifyDeleteOperation.java
  */
-@TargetEnv("abc_bankapp_host.properties")
-@TestPackageRoot("integration_tests")
+@TargetEnv("application_host.properties")
+@TestPackageRoot("integration_tests") //picks all tests from this folder and subfolders
 @RunWith(E2eJunitSuiteRunner.class)
 public class IntegrationTestSuite {
 

@@ -24,4 +24,8 @@ public class BankCustomerService {
     public Customer findCustomer(String customerId) {
         return persistenceService.getCustomerById(customerId);
     }
+
+    public void deleteCustomer(String customerId) {
+        persistenceService.deleteCustomerById(customerId);
+    }
 }

@@ -39,4 +39,15 @@ public class CustomerController {
 
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
+
+    @ResponseBody
+    @DeleteMapping(value = "/api/abc-bank/customers/{customerId}")
+    public ResponseEntity deleteCustomerById(@PathVariable("customerId") String customerId) {
+
+        LOGGER.info("Fetching customer:{}", customerId);
+
+        bankCustomerService.deleteCustomer(customerId);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

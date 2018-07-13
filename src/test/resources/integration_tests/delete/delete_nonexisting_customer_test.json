@@ -1,0 +1,32 @@
+{
+    "scenarioName": "Given the invalid customerId, delete the customer details @@Charaan",
+    "steps": [
+        {
+            "name": "delete_customer",
+            "url": "/api/abc-bank/customers/TESLA-X",
+            "operation": "DELETE",
+            "request": {
+            },
+            "assertions": {
+                "status" : 500,
+                "body" : {
+                    "error" : "Internal Server Error",
+                    "message" : "TESLA-X does not exist. Hence could not delete.",
+                    "path" : "/api/abc-bank/customers/TESLA-X"
+                }
+            }
+        },
+        {
+            "name": "get_customer",
+            "url": "/api/abc-bank/customers/TESLA-X",
+            "operation": "GET",
+            "request": {
+            },
+            "assertions": {
+                "status" : 200,
+                "body" : null
+            }
+        }
+
+    ]
+}
