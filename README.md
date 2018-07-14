@@ -1,5 +1,6 @@
-# spring-boot-integration-test
-Zerocode based integration-tests for a spring-boot application.
+# Spring-boot application - Integration-testing
+This demo project exaplins how [Zerocode](https://github.com/authorjapps/zerocode) based integration-tests for a spring-boot application can make your life easy everyday.
+
 > Keep it simple and easy while doing the integration tests
 
 ![Integration_tests_organization](img/it_tests_org_S.png)
@@ -76,3 +77,10 @@ public class E2eJunitSuiteRunner extends ZeroCodePackageRunner {
     }
 }
 ```
+
+[How do I do integration testing of a spring boot application]: https://github.com/authorjapps/spring-boot-integration-test#spring-boot-integration-test
+[How to do integration testing of a spring boot application]: https://github.com/authorjapps/spring-boot-integration-test#spring-boot-integration-test
+[Integration testing of a spring boot application]: https://github.com/authorjapps/spring-boot-integration-test#spring-boot-integration-test
+[Zerocode testing of a spring boot application]: https://github.com/authorjapps/spring-boot-integration-test#spring-boot-integration-test
+[Zerocode JSON testing of a spring boot application]: https://github.com/authorjapps/spring-boot-integration-test#spring-boot-integration-test
+[Zerocode testing of a spring application]: https://github.com/authorjapps/spring-boot-integration-test#spring-boot-integration-test
