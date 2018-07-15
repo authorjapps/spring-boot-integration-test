@@ -1,5 +1,5 @@
 # Spring-boot application - Integration-testing
-This demo project exaplins how [Zerocode](https://github.com/authorjapps/zerocode) based integration-tests for a spring-boot application can make your life easy everyday.
+This demo project exaplins how [JUnit](https://github.com/junit-team/junit4) and [Zerocode](https://github.com/authorjapps/zerocode) test framework based integration-tests for a spring-boot application can make your life easy everyday.
 
 > Keep it simple and easy while doing the integration tests
 
