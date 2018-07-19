@@ -1,0 +1,25 @@
+{
+    "scenarioName": "Upload a file to the server and assert success @@Harikachepuri04 And Santhoshkumar@@",
+    "steps": [
+        {
+            "name": "upload_a_pdf_file",
+            "url": "/api/abc-bank/upload",
+            "operation": "POST",
+            "request": {
+                "headers": {
+                    "content-type": "multipart/form-data"
+                },
+                "body": {
+                    "file": "project_files/my_zip_file.zip"         // It picks from 'test/resources' folder
+                    // "file": ".../<absolute path>//some_file.zip" // It picks from absolute path
+                }
+            },
+            "assertions": {
+                "status": 200,
+                "body": {
+                    "message": "$CONTAINS.STRING:File uploaded successfully !"
+                }
+            }
+        }
+    ]
+}

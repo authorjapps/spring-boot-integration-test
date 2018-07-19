@@ -13,7 +13,7 @@ public class Application {
     private static Logger LOGGER = LogManager.getLogger(Application.class);
 
     public static void main(String[] args) {
-        LOGGER.info("Starting EqTrader");
+        LOGGER.info("Starting Spring Boot Demo App...");
         start();
     }
 
