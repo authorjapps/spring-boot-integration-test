@@ -10,8 +10,7 @@
                     "content-type": "multipart/form-data"
                 },
                 "body": {
-                    "file": "project_files/my_zip_file.zip"         // It picks from 'test/resources' folder
-                    // "file": ".../<absolute path>//some_file.zip" // It picks from absolute path
+                    "file": "project_files/my_zip_file.zip"  // Allows 'test/resources' path or absolute path
                 }
             },
             "assertions": {
