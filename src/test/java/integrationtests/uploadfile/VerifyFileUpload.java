@@ -15,7 +15,12 @@ public class VerifyFileUpload {
 
     @Test
     @JsonTestCase("integration_tests/upload_file/file_upload_test.json")
-    public void test_createOrUpdateCustomer() throws Exception {
+    public void test_uploadFile() throws Exception {
+    }
+
+    @Test
+    @JsonTestCase("integration_tests/upload_file/file_upload_and_more_params_test.json")
+    public void test_uploadFileAndPassMoreParams() throws Exception {
     }
 
 }

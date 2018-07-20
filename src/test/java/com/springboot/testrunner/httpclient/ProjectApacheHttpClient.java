@@ -11,6 +11,7 @@ import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -28,18 +29,22 @@ import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static java.lang.String.format;
+import static java.lang.System.currentTimeMillis;
+import static java.time.LocalDateTime.now;
 import static org.apache.http.entity.ContentType.APPLICATION_JSON;
+import static org.apache.http.entity.ContentType.TEXT_PLAIN;
 import static org.jsmart.zerocode.core.utils.HelperJsonUtils.getContentAsItIsJson;
 
 public class ProjectApacheHttpClient implements BasicHttpClient {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectApacheHttpClient.class);
 
-    public static final String FILE_PARAM_KEY = "file";
+    public static final String FILES_FIELD = "files";
+    public static final String BOUNDRY_FIELD = "boundry";
     private boolean isFileUpload;
     private Object COOKIE_JSESSIONID_VALUE;
 
@@ -104,7 +109,7 @@ public class ProjectApacheHttpClient implements BasicHttpClient {
         // =-=-=-=-=-=-=-=-=-=-=-=-
         CloseableHttpResponse httpResponse;
         ///
-        if(isFileUpload){
+        if (isFileUpload) {
             LOGGER.info("Zerocode - Preparing file upload");
 
             RequestBuilder uploadRequestBuilder = createFileUploadRequestBuilder(httpUrl, methodName, reqBodyAsString);
@@ -145,13 +150,35 @@ public class ProjectApacheHttpClient implements BasicHttpClient {
     }
 
     private RequestBuilder createFileUploadRequestBuilder(String httpUrl, String methodName, String reqBodyAsString) throws IOException {
-        String fileName = getFileNameFromPayLoad(reqBodyAsString);
-        FileBody file = new FileBody(new File(getAbsPath(fileName)));
+        Map<String, Object> fileFieldNameValueMap = getFileFieldNameValue(reqBodyAsString);
 
-        HttpEntity reqEntity = MultipartEntityBuilder.create()
-                .addPart("file", file)
-                .setBoundary("" + System.currentTimeMillis() + LocalDateTime.now())
+        List<String> fileFiledsList = (List<String>) fileFieldNameValueMap.get(FILES_FIELD);
+
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+
+        fileFiledsList.forEach(fileField -> {
+            String[] fieldNameValue = fileField.split(":");
+            String fieldName = fieldNameValue[0];
+            String fileNameWithPath = fieldNameValue[1].trim();
+
+            FileBody fileBody = new FileBody(new File(getAbsPath(fileNameWithPath)));
+            multipartEntityBuilder.addPart(fieldName, fileBody);
+        });
+
+        for (Map.Entry<String, Object> entry : fileFieldNameValueMap.entrySet())
+        {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+            if(entry.getKey().equals(FILES_FIELD) || entry.getKey().equals(BOUNDRY_FIELD)){
+                continue;
+            }
+            multipartEntityBuilder.addPart(entry.getKey(), new StringBody((String)entry.getValue(), TEXT_PLAIN));
+        }
+
+        String boundry = (String) fileFieldNameValueMap.get(BOUNDRY_FIELD);
+        HttpEntity reqEntity = multipartEntityBuilder
+                .setBoundary(boundry != null ? boundry : currentTimeMillis() + now().toString())
                 .build();
+
         RequestBuilder uploadRequestBuilder = RequestBuilder
                 .create(methodName)
                 .setUri(httpUrl);
@@ -160,12 +187,8 @@ public class ProjectApacheHttpClient implements BasicHttpClient {
         return uploadRequestBuilder;
     }
 
-    private String getFileNameFromPayLoad(String reqBodyAsString) throws IOException {
-        System.out.println("reqBodyAsString ==> " + reqBodyAsString);
-
-        Map<String, String> hashMap = new ObjectMapperProvider().get().readValue(reqBodyAsString, HashMap.class);
-
-        return hashMap.get(FILE_PARAM_KEY);
+    private Map<String, Object> getFileFieldNameValue(String reqBodyAsString) throws IOException {
+        return new ObjectMapperProvider().get().readValue(reqBodyAsString, HashMap.class);
     }
 
     private void removeDuplicateHeaders(RequestBuilder requestBuilder, String key) {
@@ -208,17 +231,16 @@ public class ProjectApacheHttpClient implements BasicHttpClient {
 
     private String getAbsPath(String filePath) {
 
-        if(new File(filePath).exists()){
+        if (new File(filePath).exists()) {
             return filePath;
         }
 
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource(filePath);
-        if(resource == null){
+        if (resource == null) {
             throw new RuntimeException("Could not get details of file or folder - `" + filePath + "`, does this exist?");
         }
         return resource.getPath();
     }
-
 }
 

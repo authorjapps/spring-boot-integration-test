@@ -28,16 +28,73 @@ public class FileUploadController {
     public static final String UPLOADED_FOLDER = "target/uploaded_files";
     public static final String PREFIX = "/new_";
 
+    @PostMapping("/api/abc-bank/upload/filesAndRequestParams")
+    public ResponseEntity<Map<String, String>> fileUploadAndBody(
+            @RequestParam("file") MultipartFile fileTOBeUploaded,
+            @RequestParam("file2") MultipartFile fileTOBeUploaded2,
+            @RequestHeader HttpHeaders headers,
+            @RequestParam("trainList") String trainList,
+            @RequestParam("id") String id
+    ) {
+        LOGGER.info("\n File1 Upload process started !! File Name :- " + fileTOBeUploaded.getOriginalFilename());
+
+        Path uploadedPath;
+
+        HashMap<String, String> failureMsg = new HashMap<String, String>() {{
+            put("message", "Exception occurred while reading the file !");
+        }};
+
+        // -=-=-=-=-=-=-
+        // Upload file1
+        // -=-=-=-=-=-=-
+        try {
+            byte[] bytes = fileTOBeUploaded.getBytes();
+            uploadedPath = Paths.get(getAbsPath(UPLOADED_FOLDER) + PREFIX + fileTOBeUploaded.getOriginalFilename());
+            Files.write(uploadedPath, bytes);
+            LOGGER.info("  Success: File2 uploaded to >> " + uploadedPath.toString());
+
+        } catch (Exception ex) {
+            LOGGER.error("Exception occured while access file1 content !!");
+            return new ResponseEntity<>(failureMsg, INTERNAL_SERVER_ERROR);
+        }
+
+        // -=-=-=-=-=-=-
+        // Upload file2
+        // -=-=-=-=-=-=-
+        try {
+            //String fileContent = new String(fileTOBeUploaded.getBytes());
+            //LOGGER.info("file cotent \n" + fileContent);
+
+            byte[] bytes = fileTOBeUploaded2.getBytes();
+            uploadedPath = Paths.get(getAbsPath(UPLOADED_FOLDER) + PREFIX + fileTOBeUploaded2.getOriginalFilename());
+            Files.write(uploadedPath, bytes);
+            LOGGER.info(" Success: File uploaded to >> " + uploadedPath.toString());
+
+        } catch (Exception ex) {
+            LOGGER.error("Exception occured while access file2 content !!");
+            return new ResponseEntity<>(failureMsg, INTERNAL_SERVER_ERROR);
+        }
+
+        System.out.println("headers >> " + headers);
+        System.out.println("trainList >> " + trainList);
+        System.out.println("id >> " + id);
+
+        HashMap<String, String> successMeg = new HashMap<String, String>() {{
+            put("message", "File uploaded successfully ! Check server path- "
+            );
+        }};
+        return new ResponseEntity<>(successMeg, OK);
+    }
+
     @PostMapping("/api/abc-bank/upload")
     public ResponseEntity<Map<String, String>> fileUpload(@RequestParam("file") MultipartFile fileTOBeUploaded,
                                                           @RequestHeader HttpHeaders headers) {
         LOGGER.info("\n File Upload process started !! File Name :- " + fileTOBeUploaded.getOriginalFilename());
 
-        System.out.println("HttpHeaders : " + headers);
         Path uploadedPath;
 
         try {
-            String fileContent = new String(fileTOBeUploaded.getBytes());
+            //String fileContent = new String(fileTOBeUploaded.getBytes());
             //LOGGER.info("file cotent \n" + fileContent);
 
             byte[] bytes = fileTOBeUploaded.getBytes();
@@ -47,20 +104,25 @@ public class FileUploadController {
 
         } catch (Exception ex) {
             LOGGER.error("Exception occured while access file content !!");
-            return new ResponseEntity<>(new HashMap<String, String>() {{ put("message", "Exception occurred while reading the file !"); }},
-                    INTERNAL_SERVER_ERROR);
+            HashMap<String, String> failureMsg = new HashMap<String, String>() {{
+                put("message", "Exception occurred while reading the file !");
+            }};
+
+            return new ResponseEntity<>(failureMsg, INTERNAL_SERVER_ERROR);
         }
-        ;
-        return new ResponseEntity<>(new HashMap<String, String>() {{ put("message", "File uploaded successfully ! Check server path- "
-                + uploadedPath.toString()); }},
-                OK);
+
+        HashMap<String, String> successMsg = new HashMap<String, String>() {{
+            put("message", "File uploaded successfully ! Check server path- " + uploadedPath.toString());
+        }};
+
+        return new ResponseEntity<>(successMsg, OK);
     }
 
     private String getAbsPath(String uploadFolder) {
         ClassLoader classLoader = FileUploadController.class.getClassLoader();
         URL resource = classLoader.getResource(uploadFolder);
         File checkFolder = new File(uploadFolder);
-        if(resource == null){
+        if (resource == null) {
             checkFolder.mkdirs();
             return checkFolder.getAbsolutePath();
         }

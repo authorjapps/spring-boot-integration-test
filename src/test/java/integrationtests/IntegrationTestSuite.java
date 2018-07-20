@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 
 /**
  * This runs the entire test suite i.e. picking all tests under "resources/integration_tests"
- * recursively.
+ * folder and sub-folders.
  *
  * To run individual tests, go to the corresponding package and run the test as JUnit
  * e.g. go to folders >> get, put etc under "src/test/java/integrationtests"
@@ -17,6 +17,7 @@ import org.junit.runner.RunWith;
  *      - integrationtests.get.VerifyGetFeature.java
  *      - integrationtests.put.VerifyPutFeature.java
  *      - integrationtests.delete.VerifyDeleteOperation.java
+ *      - integrationtests.uploadfile.VerifyFileUpload.java
  */
 @TargetEnv("application_host.properties")
 @TestPackageRoot("integration_tests") //picks all tests from this folder and subfolders

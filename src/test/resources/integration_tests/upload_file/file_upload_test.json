@@ -10,7 +10,15 @@
                     "content-type": "multipart/form-data"
                 },
                 "body": {
-                    "file": "project_files/my_zip_file.zip"  // Allows 'test/resources' path or absolute path
+                    "files": ["file:project_files/my_zip_file.zip"]
+                    // Here -
+                    // file: match this fieldName to what your server expects
+                    //    -- e.g. "file": "content:project_files/my_zip_file.zip"
+                    //    -- e.g. "file": "binary:project_files/my_zip_file.zip"
+                    //    -- e.g. "file": "file1:project_files/my_zip_file.zip"
+                    //    -- e.g. "file": "file2:project_files/my_zip_file.zip" etc
+                    // and-
+                    // "project_files/my_zip_file.zip": Allows 'test/resources' path or full absolute path
                 }
             },
             "assertions": {
