@@ -10,7 +10,8 @@
                     "content-type": "multipart/form-data"
                 },
                 "body": {
-                    "files": ["file:project_files/my_zip_file.zip"]
+                    "files": ["file:project_files/my_zip_file.zip"],
+                    "boundary" : "--1122-boundry-8980912-sadf098-werwer"
                     // Here -
                     // file: match this fieldName to what your server expects
                     //    -- e.g. "file": "content:project_files/my_zip_file.zip"

@@ -90,6 +90,7 @@ public class FileUploadController {
     public ResponseEntity<Map<String, String>> fileUpload(@RequestParam("file") MultipartFile fileTOBeUploaded,
                                                           @RequestHeader HttpHeaders headers) {
         LOGGER.info("\n File Upload process started !! File Name :- " + fileTOBeUploaded.getOriginalFilename());
+        System.out.println("headers >> " + headers);
 
         Path uploadedPath;
 

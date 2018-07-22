@@ -44,7 +44,7 @@ public class ProjectApacheHttpClient implements BasicHttpClient {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectApacheHttpClient.class);
 
     public static final String FILES_FIELD = "files";
-    public static final String BOUNDRY_FIELD = "boundry";
+    public static final String BOUNDRY_FIELD = "boundary";
     private boolean isFileUpload;
     private Object COOKIE_JSESSIONID_VALUE;
 
