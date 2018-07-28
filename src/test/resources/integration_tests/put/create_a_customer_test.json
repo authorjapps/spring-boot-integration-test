@@ -6,6 +6,9 @@
             "url": "/api/abc-bank/customers/AMZON-1001",
             "operation": "PUT",
             "request": {
+                "headers": {
+                    "Content-Type": "application/json;charset=UTF-8"
+                },
                 "body": {
                     "name": "Elon",
                     "age": 25,

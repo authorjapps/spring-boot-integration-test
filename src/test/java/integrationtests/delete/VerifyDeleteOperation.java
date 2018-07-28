@@ -1,17 +1,12 @@
 package integrationtests.delete;
 
 import com.springboot.testrunner.E2eJunitRunner;
-import com.springboot.testrunner.httpclient.ProjectApacheHttpClient;
 import org.jsmart.zerocode.core.domain.JsonTestCase;
 import org.jsmart.zerocode.core.domain.TargetEnv;
-import org.jsmart.zerocode.core.domain.UseHttpClient;
-import org.jsmart.zerocode.core.httpclient.ssl.SslTrustCorporateProxyHttpClient;
-import org.jsmart.zerocode.core.httpclient.ssl.SslTrustHttpClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @TargetEnv("application_host.properties")
-@UseHttpClient(ProjectApacheHttpClient.class)
 @RunWith(E2eJunitRunner.class)
 public class VerifyDeleteOperation {
 

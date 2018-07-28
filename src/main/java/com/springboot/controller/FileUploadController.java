@@ -114,6 +114,7 @@ public class FileUploadController {
 
         HashMap<String, String> successMsg = new HashMap<String, String>() {{
             put("message", "File uploaded successfully ! Check server path- " + uploadedPath.toString());
+            put("metaData", headers!=null ? headers.toString() : "Not set");
         }};
 
         return new ResponseEntity<>(successMsg, OK);

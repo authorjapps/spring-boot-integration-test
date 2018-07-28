@@ -7,12 +7,14 @@
             "operation": "POST",
             "request": {
                 "headers": {
-                    "content-type": "multipart/form-data"
+                    "Content-Type": "multipart/form-data",
+                    "x-user-id":"bond007"
                 },
                 "body": {
                     "files": ["file:project_files/my_zip_file.zip"],
                     "boundary" : "--1122-boundry-8980912-sadf098-werwer"
-                    // Here -
+
+                    // Comments -
                     // file: match this fieldName to what your server expects
                     //    -- e.g. "file": "content:project_files/my_zip_file.zip"
                     //    -- e.g. "file": "binary:project_files/my_zip_file.zip"
@@ -25,7 +27,8 @@
             "assertions": {
                 "status": 200,
                 "body": {
-                    "message": "$CONTAINS.STRING:File uploaded successfully !"
+                    "message": "$CONTAINS.STRING:File uploaded successfully !",
+                    "metaData": "$CONTAINS.STRING:x-user-id=[bond007]"
                 }
             }
         }
