@@ -1,0 +1,31 @@
+{
+    "scenarioName": "Upload a file and send more key-value request params Santhoshkumar@@",
+    "steps": [
+        {
+            "name": "upload_a_pdf_file",
+            "url": "/api/abc-bank/upload/filesAndRequestParams",
+            "operation": "POST",
+            "request": {
+                "headers": {
+                    "Content-Type": "multipart/form-data"
+                },
+                "body": {
+                    "files": ["file:project_files/my_zip_file.zip", "file2:project_files/pdf_file.pdf"],
+                    "trainList" : "Jubilee, Central, Bakerloo",
+                    "id" : "LONDON-TUBE-UNDERGROUND"
+
+                    // Note-
+                    // It uploads two files ".zip" and ".pdf" file
+                    // Also sends two key-value param to server
+                    // Server just prints these key-value(see in the server console)
+                }
+            },
+            "assertions": {
+                "status": 200,
+                "body": {
+                    "message": "$CONTAINS.STRING:File uploaded successfully !"
+                }
+            }
+        }
+    ]
+}

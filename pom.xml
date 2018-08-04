@@ -21,7 +21,7 @@
         <log4j.version>2.11.0</log4j.version>
         <json.version>20090211</json.version>
         <junit.version>4.12</junit.version>
-        <zerocode-rest-bdd.version>1.2.4</zerocode-rest-bdd.version>
+        <zerocode-rest-bdd.version>1.2.5</zerocode-rest-bdd.version>
     </properties>
 
     <dependencies>
