@@ -3,6 +3,23 @@ This demo project exaplins how [JUnit](https://github.com/junit-team/junit4) and
 
 > Keep it simple and easy while doing the integration tests
 
+##### Needed maven dependencies
+```xml
+<dependency>
+    <groupId>org.jsmart</groupId>
+    <artifactId>zerocode-rest-bdd</artifactId>
+    <version>1.2.x</version> 
+</dependency>
+```
+```xml
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+    <scope>test</scope>
+</dependency>
+```
+
 ![Integration_tests_organization](img/it_tests_org_S.png)
 
 ### Where are the integration tests?
