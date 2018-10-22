@@ -3,6 +3,11 @@ This demo project exaplins how [JUnit](https://github.com/junit-team/junit4) and
 
 > Keep it simple and easy while doing the integration tests
 
++ See here a [Reference Implementation](https://gitlab.com/Sidhaye/springboot/tree/API-SpringData-H2DB-ZeroCode-mvn) project for **Spring boot + Spring Data + H2 in-memory DB** 
+  + **Author** - Neeraj Sidhaye @BeTheCodeWithYou
+  + This project shows Fail-Fast approach and how easily you can do integration testing
+  + This [article @Medium](https://medium.com/@bethecodewithyou/develop-zerodefect-apis-with-zerocode-cadd9dc2a430) exaplains the build pipe line approach for Zero Defect API (_same author_)
+
 ##### Needed maven dependencies
 ```xml
 <dependency>
