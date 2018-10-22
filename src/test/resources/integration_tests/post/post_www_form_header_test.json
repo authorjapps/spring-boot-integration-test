@@ -1,0 +1,46 @@
+{
+    "scenarioName": "Check issue - request www-form headers @@arunvelusamyd",
+    "steps": [
+        {
+            "name": "post_www_form_header",
+            "url": "/api/v1/issues/arunv",
+            "operation": "POST",
+            "request": {
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                "body": {
+                    "name": "Elon",
+                    "age": 25,
+                    "emailId": "emusk@tesla.com"
+                }
+            },
+            "assertions": {
+                "status": 201
+            }
+        },
+        {
+            "name": "check_json_header",
+            "url": "/api/v1/issues/arunv",
+            "operation": "POST",
+            "request": {
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "name": "Elon",
+                    "age": 25,
+                    "emailId": "emusk@tesla.com"
+                }
+            },
+            "assertions": {
+                "status" : 415,
+                "body" : {
+                    "error" : "Unsupported Media Type",
+                    "message" : "Content type 'application/json' not supported"
+                }
+            }
+        }
+
+    ]
+}

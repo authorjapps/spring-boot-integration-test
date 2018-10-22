@@ -5,9 +5,12 @@ import com.springboot.service.BankCustomerService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 public class CustomerController {
@@ -49,5 +52,14 @@ public class CustomerController {
         bankCustomerService.deleteCustomer(customerId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping(value = "/api/v1/issues/arunv", consumes = {"application/x-www-form-urlencoded"})
+    public ResponseEntity handleRequest( @RequestParam Map<String, String> params, @RequestHeader HttpHeaders httpHeaders) {
+
+        LOGGER.info("Request params received - " + params);
+        LOGGER.info("Request httpHeaders received - " + httpHeaders);
+
+        return new ResponseEntity<>("{\"working\": \"Well\"}", HttpStatus.CREATED);
     }
 }
