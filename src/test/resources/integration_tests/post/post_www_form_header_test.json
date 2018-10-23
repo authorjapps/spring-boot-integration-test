@@ -11,7 +11,7 @@
                 },
                 "body": {
                     "name": "Elon",
-                    "age": 25,
+                    "age": "25",
                     "emailId": "emusk@tesla.com"
                 }
             },
