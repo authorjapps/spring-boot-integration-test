@@ -1,0 +1,53 @@
+{
+    "scenarioName": "Via url queryParams, request QueryParams, body name-value pair - as a multi-value map @@arunvelusamyd",
+    "steps": [
+        {
+            "name": "post_www_form_header",
+            "url": "/api/v1/issues/customer?state=singapore+north&name=Arun",
+            "operation": "POST",
+            "request": {
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                "queryParams": {
+                    //"unit-no": "12-07", // sent in the "body" payload below
+                    "block-number": "33",
+                    "apartment": "Flamingo Valley",
+                    //"state/region": "singapore north", // Already in the url query params
+                    //"name": "Arun", // Already in the url query params
+                    "country": "singapore",
+                    "pincode": "87654321"
+                },
+                "body": {
+                    "unit-no": "12-07"
+                }
+
+            },
+            "assertions": {
+                "status": 201
+                // look for log entry : 2019-03-31 13:43:04,079 [http-nio-8080-exec-1]
+                // INFO com.springboot.controller.CustomerController - Request params received -
+                // {state=[singapore north], name=[Arun?block-number=33], apartment=[Flamingo Valley],
+                //country=[singapore], pincode=[87654321], unit-no=[12-07]}
+            }
+        },
+        {
+            "name": "check_json_header",
+            "url": "/api/v1/issues/customer",
+            "operation": "POST",
+            "request": {
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            },
+            "assertions": {
+                "status" : 415,
+                "body" : {
+                    "error" : "Unsupported Media Type",
+                    "message" : "Content type 'application/json' not supported"
+                }
+            }
+        }
+
+    ]
+}

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -55,11 +56,20 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/api/v1/issues/arunv", consumes = {"application/x-www-form-urlencoded"})
-    public ResponseEntity handleRequest( @RequestParam Map<String, String> params, @RequestHeader HttpHeaders httpHeaders) {
+    public ResponseEntity handleRequest(@RequestParam Map<String, String> params, @RequestHeader HttpHeaders httpHeaders) {
 
         LOGGER.info("Request params received - " + params);
         LOGGER.info("Request httpHeaders received - " + httpHeaders);
 
         return new ResponseEntity<>("{\"working\": \"Well\"}", HttpStatus.CREATED);
     }
+
+    @PostMapping(value = "/api/v1/issues/customer", consumes = {"application/x-www-form-urlencoded"})
+    public ResponseEntity handleRequestCustomer( @RequestParam MultiValueMap paramMap ) {
+
+        LOGGER.info("Request params received - " + paramMap);
+
+        return new ResponseEntity<>("{\"working\": \"Well\"}", HttpStatus.CREATED);
+    }
+
 }

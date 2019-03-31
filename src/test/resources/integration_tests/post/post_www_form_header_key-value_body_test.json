@@ -1,0 +1,42 @@
+{
+   "scenarioName": "Post Name Value pairs with x-www-form-urlencoded header @@arunvelusamyd",
+   "steps": [
+      {
+         "name": "post_www_form_header",
+         "url": "/api/v1/issues/customer",
+         "operation": "POST",
+         "request": {
+            "headers": {
+               "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "queryParams": {
+               "unit-no": "12-07",
+               "block-number": "33",
+               "state/region": "singapore north",
+               "country": "singapore",
+               "pincode": "87654321"
+            }
+         },
+         "assertions": {
+            "status": 201
+         }
+      },
+      {
+         "name": "check_json_header",
+         "url": "/api/v1/issues/customer",
+         "operation": "POST",
+         "request": {
+            "headers": {
+               "Content-Type": "application/json"
+            }
+         },
+         "assertions": {
+            "status": 415,
+            "body": {
+               "error": "Unsupported Media Type",
+               "message": "Content type 'application/json' not supported"
+            }
+         }
+      }
+   ]
+}
