@@ -1,0 +1,85 @@
+{
+    "scenarioName": "Test assertions locally without invoking API calls - More @@Sidd",
+    "steps": [
+        {
+            "name": "step_1",
+            "url": "",
+            "operation": "",
+            "request": {
+                "body": {
+                    "name": "Elon",
+                    "age": 25,
+                    "emailId": "emusk@tesla.com"
+                }
+            },
+            "assertions": {
+                "body": {
+                    "name": "Elon",
+                    "age": 25,
+                    "emailId": "emusk@tesla.com"
+                }
+            }
+        },
+        {
+            "name": "step_2",
+            "url": "",
+            "operation": "",
+            "request": {
+                "body": {
+                    "name": "${$.step_1.request.body.name}",
+                    "addresses":[
+                        {
+                            "type":"office",
+                            "zip":"111"
+                        },
+                        {
+                            "type":"home",
+                            "zip":"222"
+                        }
+                    ]
+
+                }
+            },
+            "assertions": {
+                "body": {
+                    "addresses":[
+                        {
+                            "type":"${$.step_2.request.body.addresses[0].type}",
+                            "zip":"111"
+                        },
+                        {
+                            "type":"home",
+                            "zip":"222"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "step_3",
+            "url": "",
+            "operation": "",
+            "request": {
+                "body": {
+                    "addresses":[
+                        {
+                            "type":"office",
+                            "zip":"111"
+                        },
+                        {
+                            "type":"home",
+                            "zip":"222"
+                        }
+                    ]
+
+                }
+            },
+            "assertions": {
+                "body": {
+                    "addresses.SIZE": 2,
+                    "addresses[1].type": "home"
+                }
+            }
+        }
+    ]
+}
