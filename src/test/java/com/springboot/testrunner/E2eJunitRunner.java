@@ -7,7 +7,7 @@ import org.junit.runners.model.InitializationError;
 public class E2eJunitRunner extends ZeroCodeUnitRunner {
 
     static{
-        Application.start();
+        Application.main(null);
     }
 
     public E2eJunitRunner(Class<?> klass) throws InitializationError {

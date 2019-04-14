@@ -14,7 +14,7 @@ public class Application {
 
     public static void main(String[] args) {
         LOGGER.info("Starting Spring Boot Demo App...");
-        start();
+        //start();
     }
 
     public static void start() {
