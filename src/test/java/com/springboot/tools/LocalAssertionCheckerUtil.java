@@ -7,7 +7,6 @@ import org.jsmart.zerocode.core.runner.ZeroCodeUnitRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@TargetEnv("application_host.properties")
 @RunWith(ZeroCodeUnitRunner.class)
 public class LocalAssertionCheckerUtil {
 
