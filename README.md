@@ -50,6 +50,32 @@ The suite JUnit suite test located-
 The JUnit unit tests are located **as usual** in their respective package, under root of-
 + `src/test/java/com/springboot` i.e. under package `com.springboot`
 
+### How to run a single scenario e.g. a GET or PUT or POST etc?
+```
+@TargetEnv("application_host.properties")
+@RunWith(ZerocodeSpringBootRunner.class)
+public class VerifyGetFeature {
+
+    @Test
+    @JsonTestCase("integration_tests/get/get_new_customer_by_id_test.json")
+    public void test_getNewCustomerDetailsById() throws Exception {
+    }
+
+}
+```
+
+where the `ZerocodeSpringBootRunner` starts the spring application, then fires the tests. 
+```
+public class ZerocodeSpringBootRunner extends ZeroCodeUnitRunner {
+    
+    public ZerocodeSpringBootRunner(Class<?> klass) throws InitializationError {
+        super(klass);
+        Application.start(); //<--- Starts the Spring application and checks all bean wirings have gone well.
+    }
+    
+}
+```
+
 ### How do they both run in the maven life cycle?
 e.g.
 > mvn clean install
@@ -83,30 +109,39 @@ to the root of the tests in the test-resources folder `resource/integration_test
 i.e. as below-
 ```
 @TargetEnv("abc_bankapp_host.properties")
-@TestPackageRoot("integration_tests")  //You can point this to any package you need -or- use ususal Junit Suite runner
-@RunWith(E2eJunitSuiteRunner.class)
+@TestPackageRoot("integration_tests")  //You can point this to any package you need
+@RunWith(ZerocodeSpringBootSuite.class)
 public class IntegrationTestSuite {
 
 }
 ```
 
 ### What does the above @RunWith do?
-> @RunWith(E2eJunitSuiteRunner.class)
+> @RunWith(ZerocodeSpringBootSuite.class)
 
 Ans: It starts the spring applications and then fires the tests once by one.
 See below how it brings up the application.
 ```
-public class E2eJunitSuiteRunner extends ZeroCodePackageRunner {
+public class ZerocodeSpringBootSuite extends ZeroCodePackageRunner {
 
     static{
         Application.start();
     }
 
-    public E2eJunitSuiteRunner(Class<?> klass) throws InitializationError {
+    public ZerocodeSpringBootSuite(Class<?> klass) throws InitializationError {
         super(klass);
+        Application.start(); //<--- Starts the Spring application and checks all bean wirings have gone well.
     }
 }
 ```
+
+Examples in GitHub
+===
++ [GET api validation](https://github.com/authorjapps/spring-boot-integration-test/tree/master/src/test/resources/integration_tests/get)
++ [POST api validation](https://github.com/authorjapps/spring-boot-integration-test/tree/master/src/test/resources/integration_tests/post)
++ [PUT api validation](https://github.com/authorjapps/spring-boot-integration-test/tree/master/src/test/resources/integration_tests/put)
++ [More test samples](https://github.com/authorjapps/spring-boot-integration-test/tree/master/src/test/resources/integration_tests)
+
 
 [How do I do integration testing of a spring boot application]: https://github.com/authorjapps/spring-boot-integration-test#spring-boot-integration-test
 [How to do integration testing of a spring boot application]: https://github.com/authorjapps/spring-boot-integration-test#spring-boot-integration-test
