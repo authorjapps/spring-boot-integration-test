@@ -1,13 +1,13 @@
 package integrationtests.get;
 
-import com.springboot.testrunner.E2eJunitRunner;
+import com.springboot.testrunner.ZerocodeSpringBootRunner;
 import org.jsmart.zerocode.core.domain.JsonTestCase;
 import org.jsmart.zerocode.core.domain.TargetEnv;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @TargetEnv("application_host.properties")
-@RunWith(E2eJunitRunner.class)
+@RunWith(ZerocodeSpringBootRunner.class)
 public class VerifyGetFeature {
 
     @Test

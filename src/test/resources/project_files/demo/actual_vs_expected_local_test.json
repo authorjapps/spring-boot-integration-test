@@ -1,0 +1,24 @@
+{
+    "scenarioName": "Test assertions locally without invoking API calls @@Sidd",
+    "steps": [
+        {
+            "name": "step_1",
+            "url": "",
+            "operation": "",
+            "request": {
+                "body": {
+                    "name": "Elon",
+                    "age": 25,
+                    "emailId": "emusk@tesla.com"
+                }
+            },
+            "assertions": {
+                "body": {
+                    "name": "Elon",
+                    "age": 25,
+                    "emailId": "emusk@tesla.com"
+                }
+            }
+        }
+    ]
+}

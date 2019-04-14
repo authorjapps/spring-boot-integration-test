@@ -1,14 +1,13 @@
 package integrationtests.post;
 
-import com.springboot.testrunner.E2eJunitRunner;
+import com.springboot.testrunner.ZerocodeSpringBootRunner;
 import org.jsmart.zerocode.core.domain.JsonTestCase;
 import org.jsmart.zerocode.core.domain.TargetEnv;
-import org.jsmart.zerocode.core.runner.ZeroCodeUnitRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @TargetEnv("application_host.properties")
-@RunWith(E2eJunitRunner.class)
+@RunWith(ZerocodeSpringBootRunner.class)
 //@RunWith(ZeroCodeUnitRunner.class) //<-- if you manually start the Spring App i.e. Application.java
 public class VerifyPostFeature {
 
