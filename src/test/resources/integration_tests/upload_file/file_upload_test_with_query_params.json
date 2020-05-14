@@ -1,0 +1,31 @@
+{
+    "scenarioName": "Upload a file to the server with query params @@Ruhan",
+    "steps": [
+        {
+            "name": "upload_a_pdf_file",
+            "url": "/api/abc-bank/upload2",
+            "operation": "POST",
+            "request": {
+                "headers": {
+                    "Content-Type": "multipart/form-data",
+                    "x-user-id":"bond007"
+                },
+                "queryParams":{
+                    "token": "Hello" // or with url ?token=Hello : both way works
+                },
+                "body": {
+                    "files": ["file:project_files/Ruhan/XLS_Template.xls"],
+                    "boundary" : "--1122-boundry-8980912-sadf098-werwer"
+                    // "companyCode": 9 //Integer doesn't work due to ApacheContentType has no support, String "9" works
+                }
+            },
+            "assertions": {
+                "status": 200,
+                "body": {
+                    "message": "$CONTAINS.STRING:File uploaded successfully !",
+                    "metaData": "$CONTAINS.STRING:x-user-id=[bond007]"
+                }
+            }
+        }
+    ]
+}

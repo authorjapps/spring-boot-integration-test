@@ -21,4 +21,9 @@ public class VerifyFileUpload {
     public void test_uploadFileAndPassMoreParams() throws Exception {
     }
 
+    @Test
+    @Scenario("integration_tests/upload_file/file_upload_test.json")
+    public void test_uploadFile_queryParams() throws Exception {
+    }
+
 }

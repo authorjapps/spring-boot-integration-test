@@ -114,7 +114,44 @@ public class FileUploadController {
 
         HashMap<String, String> successMsg = new HashMap<String, String>() {{
             put("message", "File uploaded successfully ! Check server path- " + uploadedPath.toString());
-            put("metaData", headers!=null ? headers.toString() : "Not set");
+            put("metaData", headers != null ? headers.toString() : "Not set");
+        }};
+
+        return new ResponseEntity<>(successMsg, OK);
+    }
+
+    @PostMapping("/api/abc-bank/upload2")
+    public ResponseEntity<Map<String, String>> fileUploadQueryParams(
+            @RequestParam("file") MultipartFile fileTOBeUploaded,
+            @RequestParam("token") String qParam1,
+            @RequestHeader HttpHeaders headers) {
+        LOGGER.info("\n File Upload process started !! File Name :- " + fileTOBeUploaded.getOriginalFilename());
+        System.out.println("Query Param 1 >> " + qParam1);
+        System.out.println("headers >> " + headers);
+
+        Path uploadedPath;
+
+        try {
+            //String fileContent = new String(fileTOBeUploaded.getBytes());
+            //LOGGER.info("file cotent \n" + fileContent);
+
+            byte[] bytes = fileTOBeUploaded.getBytes();
+            uploadedPath = Paths.get(getAbsPath(UPLOADED_FOLDER) + PREFIX + fileTOBeUploaded.getOriginalFilename());
+            Files.write(uploadedPath, bytes);
+            LOGGER.info("Success: File uploaded to >> " + uploadedPath.toString());
+
+        } catch (Exception ex) {
+            LOGGER.error("Exception occured while access file content !!");
+            HashMap<String, String> failureMsg = new HashMap<String, String>() {{
+                put("message", "Exception occurred while reading the file !");
+            }};
+
+            return new ResponseEntity<>(failureMsg, INTERNAL_SERVER_ERROR);
+        }
+
+        HashMap<String, String> successMsg = new HashMap<String, String>() {{
+            put("message", "File uploaded successfully ! Check server path- " + uploadedPath.toString());
+            put("metaData", headers != null ? headers.toString() : "Not set");
         }};
 
         return new ResponseEntity<>(successMsg, OK);
